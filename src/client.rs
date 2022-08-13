@@ -9,7 +9,7 @@ fn main() {
 
     println!("{}", serde_json::to_string(&test).unwrap());
 
-    println!("{}", serde_json::to_string(&Response::Ok).unwrap());
+    println!("{}", serde_json::to_string(&Response::OK).unwrap());
 
     let testresp = Response::RandomInt { value: 12345 };
 
