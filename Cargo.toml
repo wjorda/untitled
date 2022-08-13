@@ -1,0 +1,28 @@
+[package]
+name = "untitled"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "common"
+path = "src/common.rs"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
+
+[dependencies]
+log = "0.4.17"
+serde = { version = "1.0.143", features = ['derive'] }
+serde_json = "1.0.83"
+threadpool = "1.8.1"
+
+[dependencies.simple_logger]
+version = "2.2.0"
+features = ["colors"]
