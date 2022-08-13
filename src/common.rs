@@ -42,6 +42,7 @@ pub enum Response {
     RandomFloat {
         value: f64,
     },
+    Steam,
     Goodbye,
     ShuttingDown
 }
