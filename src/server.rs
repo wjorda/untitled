@@ -10,19 +10,7 @@ use std::thread::{sleep, JoinHandle};
 use std::time::{Duration, SystemTime};
 use threadpool::ThreadPool;
 
-fn process(rx: Receiver<u8>, config: Config) {
-    debug!("Thread started!");
-    let mut counter = 0;
-    loop {
-        if let Ok(signal) = rx.try_recv() {
-            debug!("Signal {} received, killing thread", signal);
-            return;
-        }
-        info!("Thread has been running for {} seconds!", counter);
-        counter += 1;
-        sleep(Duration::from_secs(1))
-    }
-}
+mod thread;
 
 struct Task {
     thread: JoinHandle<()>,
@@ -35,7 +23,7 @@ impl Task {
         let (tx, rx) = mpsc::channel();
         Self {
             tx,
-            thread: std::thread::spawn(move || process(rx, config)),
+            thread: std::thread::spawn(move || thread::process(rx, config)),
             timestamp: SystemTime::now(),
         }
     }
